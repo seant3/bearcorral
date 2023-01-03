@@ -3,24 +3,56 @@
 {% block content %}
 <h1 class="text-center">ʕ •́؈•̀)</h1>
 <hr />
-    <div class="card">  
-        <div class="card-body">
-                <div class="card-title">{{ bear.name }}</div>
-                <p class="card-text">Breed: {{ bear.breed }}</p>
-                <p class="card-text">Description: {{ bear.description }}</p>
-                {% if bear.age > 2 %}
-                    <p class="card-text">Age: {{ bear.age }}</p>
-                {% else %}
-                    <p class="card-text">Age: Cub</p>
-                {% endif %}
-            
-                <div>
-                    <a href="{% url 'bears_update' bear.id %}">Edit</a>
-                    <a href="{% url 'bears_delete' bear.id %}">Delete</a>
-                  </div>
-            </div>    
-        </div>
-    </div>     
-   
-</div>
+    <div class="row">
+        <div class="col s6">
+            <div class="card">  
+                <div class="card-body">
+                        <div class="card-title">{{ bear.name }}</div>
+                        <p class="card-text">Breed: {{ bear.breed }}</p>
+                        <p class="card-text">Description: {{ bear.description }}</p>
+                        {% if bear.age > 2 %}
+                            <p class="card-text">Age: {{ bear.age }}</p>
+                        {% else %}
+                            <p class="card-text">Age: Cub</p>
+                        {% endif %}
+                    
+                        <div>
+                            <a href="{% url 'bears_update' bear.id %}">Edit</a>
+                            <a href="{% url 'bears_delete' bear.id %}">Delete</a>
+                        </div>
+                </div>    
+            </div>
+        </div> 
+        <div class="col s6">
+            <form action="{% url 'add_feeding' bear.id %}" method="POST">
+                {% csrf_token %}
+                {{ feeding_form.as_p }}
+                <input type="submit" class="btn" value="Add Feeding">
+            </form>
+            <table class="striped">
+                <thead>
+                    <tr><th>Date</th><th>Meal</th></tr>
+                </thead>
+                <tbody>
+                    {% for feeding in bear.feeding_set.all %}
+                        <tr>
+                            <td>{{ feeding.date }}</td>
+                            <td>{{ feeding.get_meal_display }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>    
+    </div>
+    
+    <script>
+        const dateEl = document.querySelector('#id_date');
+
+        $(function(dateEl){
+           $('.datepicker').datepicker({
+              format: 'mm-dd-yyyy'
+            });
+        });
+        </script>
 {% endblock %}
+
