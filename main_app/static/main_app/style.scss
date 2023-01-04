@@ -1,6 +1,52 @@
-$primary: rgb(214, 227, 227);
+$primary-color: rgb(214, 227, 227);
+$btn-color: rgb(0, 115, 255);
 
 body {
-    background-color: $primary;
+    background-color: $primary-color;
     padding-bottom: 70px;
+}
+
+footer {
+    font-size: 1rem;
+    position: fixed;
+    bottom: 0.4rem;
+    right: 1rem;
+    text-align: right;
+    padding: 1rem;
+    color: set-text-color($primary-color);
+}
+
+button.btn {
+    background-color: $btn-color;
+}
+
+input.btn {
+    @extend  button.btn;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    div.card_box {
+        justify-content: center;
+        align-items: center;
+        width: 15vh;
+        height: 15vh;
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+div.card_title {
+    font-weight: 400;
+    font-size: larger;
+    color: darkgreen;
+}
+
+.about_image {
+    margin: 1rem;
+    padding: 35vh;
+    background: url('../img/care-bear-png.png') center top;
+    background-size: cover;
 }

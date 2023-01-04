@@ -1,0 +1,18 @@
+/* line 3, main_app/static/main_app/style.scss */
+body {
+  background-color: #d6e3e3;
+  padding-bottom: 70px; }
+
+/* line 8, main_app/static/main_app/style.scss */
+footer {
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0.4rem;
+  right: 1rem;
+  text-align: right;
+  padding: 1rem;
+  color: set-text-color(#d6e3e3); }
+
+/* line 18, main_app/static/main_app/style.scss */
+button {
+  background-color: #16d1d1; }

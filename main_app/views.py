@@ -9,7 +9,7 @@ class FeedingCreateView(CreateView):
 
 class BearCreate(CreateView):
     model = Bear
-    fields = '__all__'
+    fields = ['name', 'breed', 'description', 'age']
 
 class BearUpdate(UpdateView):
     model = Bear
@@ -50,8 +50,9 @@ def bears_index(request):
 
 def bears_detail(request, bear_id):
     bear = Bear.objects.get(id=bear_id)
+    toys_bear_doesnot_have = Toy.objects.exclude(id__in = bear.toys.all().values_list('id'))
     feeding_form = FeedingForm()
-    return render(request, 'bears/details.html', {'bear': bear, 'feeding_form': feeding_form})
+    return render(request, 'bears/details.html', {'bear': bear, 'feeding_form': feeding_form, 'toys': toys_bear_doesnot_have})
 
 def add_feeding(request, bear_id):
     form = FeedingForm(request.POST)
@@ -60,3 +61,7 @@ def add_feeding(request, bear_id):
         new_feeding.bear_id = bear_id
         new_feeding.save()
     return redirect('detail', bear_id=bear_id)
+
+def assoc_toy(requests, bear_id, toy_id):
+        Bear.objects.get(id=bear_id).toys.add(toy_id)
+        return redirect('detail', bear_id=bear_id)

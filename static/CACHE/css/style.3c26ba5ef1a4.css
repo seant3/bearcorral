@@ -1,0 +1,32 @@
+/* line 4, main_app/static/main_app/style.scss */
+body {
+  background-color: #d6e3e3;
+  padding-bottom: 70px; }
+
+/* line 9, main_app/static/main_app/style.scss */
+footer {
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0.4rem;
+  right: 1rem;
+  text-align: right;
+  padding: 1rem;
+  color: set-text-color(#d6e3e3); }
+
+/* line 19, main_app/static/main_app/style.scss */
+button.btn, input.btn {
+  background-color: #0073ff; }
+
+/* line 27, main_app/static/main_app/style.scss */
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  /* line 31, main_app/static/main_app/style.scss */
+  .box div.card_toy {
+    justify-content: center;
+    align-items: center;
+    width: 20vh;
+    height: 15vh;
+    margin: 1rem;
+    padding: 1rem; }
